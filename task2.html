@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      #timer {
+        font-size: 40px;
+      }
+
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        margin: 30px auto;
+      }
+
+      .animation {
+        animation: move 0.5s infinite alternate;
+      }
+
+      @keyframes move {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.5) rotate(20deg);
+        }
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Таймер</h1>
+
+    <h2 id="timer">30.000</h2>
+
+    <div id="box"></div>
+
+    <button id="startBtn">Почати</button>
+
+    <script>
+      let time = 30;
+      let timer;
+
+      const timerText = document.getElementById("timer");
+      const box = document.getElementById("box");
+      const startBtn = document.getElementById("startBtn");
+
+      startBtn.onclick = function () {
+        startBtn.disabled = true;
+
+        time = 30;
+
+        timer = setInterval(function () {
+          time -= 0.001;
+
+          if (time <= 10) {
+            box.classList.add("animation");
+          }
+
+          if (time <= 0) {
+            clearInterval(timer);
+
+            time = 0;
+
+            timerText.textContent = "0.000";
+
+            box.classList.remove("animation");
+
+            startBtn.disabled = false;
+
+            return;
+          }
+
+          timerText.textContent = time.toFixed(3);
+        }, 1);
+      };
+    </script>
+  </body>
+</html>
+```

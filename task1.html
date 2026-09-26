@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Таймер</h1>
+
+    <h2 id="timer">60:00</h2>
+
+    <p id="message"></p>
+
+    <script>
+      let minutes = 60;
+
+      const timer = setInterval(function () {
+        minutes--;
+
+        document.getElementById("timer").textContent = minutes + ":00";
+
+        if (minutes === 30) {
+          document.getElementById("message").textContent =
+            "Увага! Залишилось менше половини часу!";
+        }
+
+        if (minutes === 0) {
+          clearInterval(timer);
+
+          document.getElementById("message").textContent = "Час вийшов!";
+        }
+      }, 60000);
+    </script>
+  </body>
+</html>
